@@ -1,6 +1,6 @@
 {
   "name": "curl-proxy",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "解决代理转发post请求失败",
   "main": "index.js",
   "scripts": {

@@ -4,7 +4,7 @@
  * @version:   V0.0.1
  * @date:      2016-10-19 11:10:18
  */
-// var chalk = require('chalk');
+var chalk = require('chalk');
 var exec = require('child_process').exec;
 module.exports = {
     request: function(me) {
@@ -23,7 +23,7 @@ module.exports = {
         })();
         exec(cmdStr, function(err, stdout, stderr) {
             if (err) {
-                console.log('远程代理失败:' + stderr);
+                console.log(chalk.red('远程代理失败:' + stderr));
             } else {
                 me.res.writeHead(200, {
                     'Content-Type': contentType
