@@ -1,0 +1,19 @@
+{
+  "name": "curl-proxy",
+  "version": "0.0.1",
+  "description": "解决代理转发post请求失败",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liubiao0810/curl-proxy.git"
+  },
+  "author": "liubiao@itoxs.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/liubiao0810/curl-proxy/issues"
+  },
+  "homepage": "https://github.com/liubiao0810/curl-proxy#readme"
+}
