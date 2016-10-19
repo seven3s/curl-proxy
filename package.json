@@ -1,6 +1,6 @@
 {
   "name": "curl-proxy",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "解决代理转发post请求失败",
   "main": "index.js",
   "scripts": {
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/liubiao0810/curl-proxy/issues"
   },
-  "homepage": "https://github.com/liubiao0810/curl-proxy#readme"
+  "homepage": "https://github.com/liubiao0810/curl-proxy#readme",
+  "dependencies": {
+    "chalk": "^1.1.3"
+  }
 }

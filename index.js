@@ -4,6 +4,7 @@
  * @version:   V0.0.1
  * @date:      2016-10-19 11:10:18
  */
+// var chalk = require('chalk');
 var exec = require('child_process').exec;
 module.exports = {
     request: function(me) {
@@ -13,15 +14,21 @@ module.exports = {
         var curlParams = this.convertParams(this.method2params(me));
         var method = me.req.method;
         var url = me.req.headers.referer + me.req.url;
+        console.log(chalk.green(method + ':') + url);
         var cmdStr = 'curl -X ' + method + curlParams + ' "' + url + '"';
+        var contentType = me.req.headers['content-type'];
+        var encoding = !(/charset/.test(contentType)) ? 'utf-8' : (function () {
+            var s = contentType.search(/charset/);
+            return contentType.substr(s).split('=')[1];
+        })();
         exec(cmdStr, function(err, stdout, stderr) {
             if (err) {
                 console.log('远程代理失败:' + stderr);
             } else {
                 me.res.writeHead(200, {
-                    'Content-Type': 'application/json'
+                    'Content-Type': contentType
                 });
-                me.res.write(stdout, 'utf-8');
+                me.res.write(stdout, encoding);
                 me.res.end();
             }
         });
