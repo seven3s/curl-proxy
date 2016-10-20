@@ -23,9 +23,9 @@ module.exports = {
         })();
         exec(cmdStr, function(err, stdout, stderr) {
             if (err) {
-                console.log(chalk.red('远程代理失败:' + stderr));
+                console.log('远程代理失败:' + stderr);
             } else {
-                me.res.writeHead(200, {
+                me.res.writeHead(me.res.statusCode, {
                     'Content-Type': contentType
                 });
                 me.res.write(stdout, encoding);
