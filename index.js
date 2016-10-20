@@ -16,7 +16,7 @@ module.exports = {
         var url = me.req.headers.referer + me.req.url;
         console.log(chalk.green(method + ':') + url);
         var cmdStr = 'curl -X ' + method + ' -s -w %{http_code}' + curlParams + ' "' + url + '"';
-        var contentType = me.req.headers['content-type'];
+        var contentType = me.req.headers.accept.split(',')[0] || 'application/json';
         var encoding = !(/charset/.test(contentType)) ? 'utf-8' : (function () {
             var s = contentType.search(/charset/);
             return contentType.substr(s).split('=')[1];
