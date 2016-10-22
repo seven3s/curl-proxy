@@ -1,7 +1,31 @@
 # curl-proxy
 	解决代理转发post请求失败 （0.0.5测试版，本地需支持curl命令）
+
+###关于windows不支持curl解决办法：
+> 1.下载[curl工具](https://pan.baidu.com/s/1mhH0SGC)；
+> 2.下载完成后将curl文件夹放在d:\盘下；
+> 3.右键单击“我的电脑”——“属性”——“高级”——“环境变量”——“系统变量”——“Path”——“编辑”——加入“;D:\curl;”(注意分号);D:\curl换成你的curl路径也可以)——“确定”加入到系统环境变量后可在命令提示符内直接运行如
+> 4.测试：
+		
+		```
+		curl -I http://www.163.com
+		
+		出现：
+		HTTP/1.1 200 OK
+		Date: Sat, 22 Oct 2016 06:25:01 GMT
+		Server: openresty
+		Content-Type: text/html; charset=GBK
+		Vary: Accept-Encoding,User-Agent,Accept
+		Expires: Sat, 22 Oct 2016 06:26:21 GMT
+		Cache-Control: max-age=80
+		X-Via: 1.1 hbtj81:0 (Cdn Cache Server V2.0), 1.1 		chd33:6 (Cdn Cache Server V2.0), 1.1 bjdxtck20:2 		(Cdn Cache Server V2.0)
+		Connection: keep-alive
+		及说明现在已经支持curl命令了，可以使用本工具发起请求代理了
+		```
+>5.如果想要支持https那么就需要安装ssl版本的了，请自行谷歌~~		
+
 ###版本说明
-> 0.0.4: 修复返回实际statusCode  bug
+> 0.0.5: 修复返回实际statusCode  bug
 
 ### 概述：
 > 1.在前后端分离情况下使用http-proxy做请求转发非get请求失败
