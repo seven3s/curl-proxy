@@ -10,7 +10,6 @@ module.exports = {
     request: function(me) {
         // hack技巧，不使用koa的reponse，使用原生的
         me.respond = false;
-        var params = me.request.body;
         var curlParams = this.convertParams(this.method2params(me));
         var method = me.req.method;
         var url = me.req.headers.referer + me.req.url;
