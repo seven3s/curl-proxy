@@ -4,16 +4,19 @@
  * @version:   V0.0.1
  * @date:      2016-10-19 11:10:18
  */
-var chalk = require('chalk');
+var util = require('./util');
 var exec = require('child_process').exec;
 module.exports = {
     request: function(me) {
         // hack技巧，不使用koa的reponse，使用原生的
         me.respond = false;
-        var curlParams = this.convertParams(this.method2params(me));
+        var curlParams = util.convertParams(me);
         var method = me.req.method;
-        var url = me.req.headers.referer + me.req.url;
-        console.log(chalk.green(method + ':') + url);
+        var headers = me.req.headers;
+        var url = '';
+        // 判断是否是80端口
+        url += headers.port ? (headers.host + ':' + headers.port) : headers.host;
+        url += me.req.url;
         var cmdStr = 'curl -X ' + method + ' -s -w %{http_code}' + curlParams + ' "' + url + '"';
         var contentType = me.req.headers.accept.split(',')[0] || 'application/json';
         var encoding = !(/charset/.test(contentType)) ? 'utf-8' : (function () {
@@ -23,7 +26,8 @@ module.exports = {
         exec(cmdStr, function(err, stdout, stderr) {
             var len = stdout.length;
             // 获取实际的statusCode
-            var statusCode = stdout.slice(-3, len);
+            var statusCode = stdout.slice(-3, len) - 0;
+            console.log(util.getColorStatusCode(statusCode + ' ' +method) + ' ' + url);
             var data = stdout.slice(0, -3);
             if (err) {
                 console.log('远程代理失败:' + stderr);
@@ -35,39 +39,5 @@ module.exports = {
                 me.res.end();
             }
         });
-    },
-
-    /**
-     * convertParams 将参数转换为curl格式参数
-     *
-     * @return {String} 返回转换后的参数
-     */
-    convertParams: function (Params) {
-        var curlParams = '';
-        for (var item in Params) {
-            var tem = '"' + item + '=' + Params[item] + '"';
-            curlParams += ' -F ';
-            curlParams += tem;
-        }
-        return curlParams;
-    },
-
-    /**
-     * method2params 根据method获取参数
-     *
-     * @param  {Object} me this对象
-     *
-     * @return {String}    返回参数
-     */
-    method2params: function (me) {
-        var method = me.req.method;
-        var url = me.req.url;
-        var params = '';
-        if (method === 'GET') {
-            params = me.query;
-        }else {
-            params = me.request.body;
-        }
-        return params;
     }
 };
