@@ -7,7 +7,14 @@
 var app = require('lg-server');
 var static_dir = './web';
 var curlProxy = require('../index.js');
+var headers = {
+    host: 'www.163.com',
+    referer: 'http://www.163.com'
+};
+app.setHeaders(headers);
 app.createServer(static_dir, function (req, res) {
-    // console.log(this);
-    // curlProxy.request(this);
+    var me = {};
+    me.req = req;
+    me.res = res;
+    curlProxy.request(me);
 });

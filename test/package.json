@@ -8,7 +8,8 @@
   ],
   "main": "main.js",
   "dependencies": {
-    "lg-server": "^1.1.4"
+    "lg-server": "^1.1.4",
+    "lodash": "^4.16.4"
   },
   "devDependencies": {},
   "scripts": {

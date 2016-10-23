@@ -18,12 +18,15 @@ $(function () {
 var http = {
     get: function (cal) {
         $.ajax({
-            url: 'http://www.163.com',
+            url: '/special/00774IMH/n_house_bj_01_201405.html',
+            // url: '/a/b',
             type: 'GET',
+            beforeSend: function( xhr ) {
+                xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+            }
         })
         .done(function(json) {
-            console.log(json);
-            cal && cal(data);
+            cal && cal(json);
         })
         .fail(function() {
             
