@@ -4,6 +4,7 @@
  * @Version:   V0.0.1
  * @Date:      2016-10-23 17:12:07
  */
+var _ = require('lodash');
 var app = require('lg-server');
 var static_dir = './web';
 var curlProxy = require('../index.js');
@@ -13,8 +14,15 @@ var headers = {
 };
 app.setHeaders(headers);
 app.createServer(static_dir, function (req, res) {
-    var me = {};
-    me.req = req;
-    me.res = res;
-    curlProxy.request(me);
+    var protocol = req.headers.protocol;
+    if (protocol === 'https') {
+        headers = {
+            host: 'codemart.kf5.com',
+            referer: 'https://codemart.kf5.com'
+        };
+        req.headers = _.assign(req.headers, headers);
+    }
+    app.req = req;
+    app.res = res;
+    curlProxy.request(app);
 });

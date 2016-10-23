@@ -7,26 +7,30 @@
         button {
             cursor: pointer;
         }
-        .http-content,
-        .https-content {
+        .content {
             float: right;
+            border: 1px solid green;
+            padding: 10px;
+            margin-right: 10px;
         }
     </style>
     <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="./index.js"></script>
 </head>
 <body>
+    <p>
+        如果看到绿色边框区域变化说明代理测试成功
+    </p>
+    <div class="content">测试显示区</div>
     <div>
         <h5>http</h5>
-        <div class="http-content">测试http</div>
         <button class="httpGet">httpGet</button>
-        <button class="post">POST</button>
+        <!-- <button class="post">POST</button> -->
     </div>
     <div>
         <h5>https</h5>
-        <div class="https-content">测试http</div>
         <button class="httpsGet">httpsGet</button>
-        <button class="post">POST</button>
+        <!-- <button class="post">POST</button> -->
     </div>
 </body>
 </html>

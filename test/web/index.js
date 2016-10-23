@@ -8,11 +8,13 @@
 $(function () {
     $('.httpGet').click(function () {
         http.get(function (data) {
-            $('.http-content').html(data);
+            $('.content').html(data);
         });
     });
     $('.httpsGet').click(function () {
-        https.get();
+        https.get(function (data) {
+            $('.content').html(data);
+        });
     });
 });
 var http = {
@@ -23,6 +25,7 @@ var http = {
             type: 'GET',
             beforeSend: function( xhr ) {
                 xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+                xhr.setRequestHeader('protocol', 'http');
             }
         })
         .done(function(json) {
@@ -34,13 +37,17 @@ var http = {
     }
 };
 var https = {
-    get: function () {
+    get: function (cab) {
         $.ajax({
-            url: 'https://www.baidu.com',
+            url: '/supportbox/GetSetting',
             type: 'GET',
+            beforeSend: function( xhr ) {
+                xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+                xhr.setRequestHeader('protocol', 'https');
+            }
         })
-        .done(function(JSON) {
-            console.log(json);
+        .done(function(json) {
+            cab && cab(json);
         })
         .fail(function() {
             
