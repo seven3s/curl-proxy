@@ -1,0 +1,19 @@
+{
+  "name": "test",
+  "version": "0.0.1",
+  "description": "curl test",
+  "author": "花夏",
+  "keywords": [
+    "curl-proxy"
+  ],
+  "main": "main.js",
+  "dependencies": {
+    "lg-server": "^1.1.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "MIT"
+}

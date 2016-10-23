@@ -4,7 +4,7 @@
  * @version:   V0.0.1
  * @date:      2016-10-19 11:10:18
  */
-var util = require('./util');
+var util = require('./lib/util');
 var exec = require('child_process').exec;
 module.exports = {
     request: function(me) {
