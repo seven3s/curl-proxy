@@ -53,10 +53,8 @@
         headers: {
             cookie: 'cookie_user_key=xuepeng01',
             // 请配置此项，以获取实际地址
-            host: 'http://10.95.105.135',
-            // 如果是http 80端口/https 443端口可不配置此项
-            port: 8030
-        }
+            host: 'http://10.95.105.135:8030'
+       }
     }
 	```
 ###关于windows不支持curl解决方案：

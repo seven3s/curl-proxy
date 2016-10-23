@@ -15,7 +15,7 @@ module.exports = {
         var headers = me.req.headers;
         var url = '';
         // 判断是否是80端口
-        url += headers.port ? (headers.host + ':' + headers.port) : headers.host;
+        url += headers.host;
         url += me.req.url;
         var cmdStr = 'curl -X ' + method + ' -s -w %{http_code}' + curlParams + ' "' + url + '"';
         var contentType = me.req.headers.accept.split(',')[0] || 'application/json';
