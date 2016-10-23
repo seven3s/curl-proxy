@@ -13,10 +13,8 @@ module.exports = {
         var curlParams = util.convertParams(me);
         var method = me.req.method;
         var headers = me.req.headers;
-        var url = '';
-        // 判断是否是80端口
-        url += headers.host;
-        url += me.req.url;
+        var protocol = headers.Referer.split(':')[0] || 'http';
+        var url = protocol+  headers.host + me.req.url;
         var cmdStr = 'curl -X ' + method + ' -s -w %{http_code}' + curlParams + ' "' + url + '"';
         var contentType = me.req.headers.accept.split(',')[0] || 'application/json';
         var encoding = !(/charset/.test(contentType)) ? 'utf-8' : (function () {

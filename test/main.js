@@ -8,6 +8,6 @@ var app = require('lg-server');
 var static_dir = './web';
 var curlProxy = require('../index.js');
 app.createServer(static_dir, function (req, res) {
-    console.log(this);
+    // console.log(this);
     // curlProxy.request(this);
 });
