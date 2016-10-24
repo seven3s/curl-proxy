@@ -16,49 +16,19 @@
 	```
 	npm install curl-proxy
 	```
-#### 2.引入：
+#### 2.引入调用：
 
 	```
 	var curlProxy = require('curl-proxy');
+	// 如果node webserver没有设置必须先设置
+	curlProxy.lodashHeaders({
+        host: '10.95.105.135:8030',
+        protocol: 'http' // 默认http，可不用设置
+    });
 	curlProxy.request(this);
-	// 传入this是原生对象
+	// 传入this是原生node websever对象
 	```
-#### 3.注意事项：
-
-	```
-	// 此句必须添加否则获取不到实际请求地址
-	this.req.headers = _.assign(this.req.headers, config.remote.headers);
-    var method = this.req.method;
-    if (method === 'POST') {
-        var curlProxy = require('curl-proxy');
-        curlProxy.request(this);
-    }else {
-        if (this.req.headers['x-requested-with'] !== 'XMLHttpRequest'
-            || /\.html$/g.test(this.req.url)) {
-            return yield next;
-        }
-        // hack技巧，不使用koa的reponse，使用原生的
-        this.respond = false;
-        gutil.log('URL:', base + this.req.url);
-        proxy.web(this.req, this.res, {
-            target: base
-        });
-    }
-	```
-#### 4.关于配置：
-
-	```
-	remote: {
-        path: 'http://10.95.106.155:8030', // 袁陵开发机
-        // path: 'http://10.95.105.135:8030', // 刘大伟开发机
-        // path: 'http://172.24.30.171:8888',
-        headers: {
-            cookie: 'cookie_user_key=xuepeng01',
-            // 请配置此项，以获取实际地址
-            host: 'http://10.95.105.135:8030'
-       }
-    }
-	```
+	
 ###关于windows不支持curl解决方案：
 > 1.下载[curl工具](https://pan.baidu.com/s/1mhH0SGC)；
 

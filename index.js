@@ -4,6 +4,7 @@
  * @version:   V0.0.1
  * @date:      2016-10-19 11:10:18
  */
+var _ = require('lodash');
 var util = require('./lib/util');
 var exec = require('child_process').exec;
 module.exports = {
@@ -13,7 +14,9 @@ module.exports = {
         var curlParams = util.convertParams(me);
         var method = me.req.method;
         var headers = me.req.headers;
-        var protocol = headers.referer.split(':')[0] || 'http';
+        var protocol = headers.protocol;
+        // 设置http
+        ((protocol && protocol === 'https') && (protocol = protocol, true)) || (protocol = 'http', true);
         var url = protocol + '://' +  headers.host + me.req.url;
         var cmdStr = 'curl -X ' + method + ' -s -w %{http_code}' + curlParams + ' "' + url + '"';
         var contentType = me.req.headers.accept.split(',')[0] || 'application/json';
@@ -37,5 +40,15 @@ module.exports = {
                 me.res.end();
             }
         });
+    },
+
+    /**
+     * lodashHeaders 设置headers
+     *
+     * @param  {Objetc} headers 形参
+     *
+     */
+    lodashHeaders: function (headers) {
+        me.req.headers = _.assign(me.req.headers, headers);
     }
 };
