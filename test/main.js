@@ -9,16 +9,15 @@ var app = require('lg-server');
 var static_dir = './web';
 var curlProxy = require('../index.js');
 var headers = {
-    host: 'www.163.com',
-    referer: 'http://www.163.com'
+    host: 'www.163.com'
 };
 app.setHeaders(headers);
 app.createServer(static_dir, function (req, res) {
     var protocol = req.headers.protocol;
     if (protocol === 'https') {
         headers = {
-            host: 'codemart.kf5.com',
-            referer: 'https://codemart.kf5.com'
+            host: 'www.baidu.com',
+            protocol: 'https'
         };
         req.headers = _.assign(req.headers, headers);
     }

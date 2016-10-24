@@ -32,6 +32,11 @@ module.exports = {
             var data = stdout.slice(0, -3);
             if (err) {
                 console.log('远程代理失败:' + stderr);
+                me.res.writeHead(404, {
+                    'Content-Type': contentType
+                });
+                me.res.write('代理请求失败', encoding);
+                me.res.end();
             } else {
                 me.res.writeHead(statusCode, {
                     'Content-Type': contentType
