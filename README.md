@@ -87,7 +87,7 @@
 		
 >6.如果是win_64系统请下[curl-ssl_64](https://pan.baidu.com/s/1eS6xZcY)
 
->7.注意，如果失效可能是：需要安装这个
+>7.注意，如果失效可能是：需要安装这个,windows下，命令行启动后会自动新开一个命令行，关闭即可。
 
 安装 [Visual C++ 2008 Redistributable Package](http://www.microsoft.com/en-us/download/details.aspx?id=15336)
 
