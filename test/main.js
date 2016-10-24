@@ -16,7 +16,7 @@ app.createServer(static_dir, function (req, res) {
     var protocol = req.headers.protocol;
     if (protocol === 'https') {
         headers = {
-            host: 'www.baidu.com',
+            host: 'github.com',
             protocol: 'https'
         };
         req.headers = _.assign(req.headers, headers);

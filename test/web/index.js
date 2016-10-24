@@ -39,7 +39,7 @@ var http = {
 var https = {
     get: function (cab) {
         $.ajax({
-            url: '/supportbox/GetSetting',
+            url: '/liubiao0810/curl-proxy/blob/master/README.md?_pjax=%23js-repo-pjax-container',
             type: 'GET',
             beforeSend: function( xhr ) {
                 xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
