@@ -18,7 +18,7 @@ module.exports = {
         // 设置http
         ((protocol && protocol === 'https') && (protocol = protocol, true)) || (protocol = 'http', true);
         var url = protocol + '://' +  headers.host + me.req.url;
-        var cmdStr = 'curl -X ' + method + ' -s -w %{http_code}' + curlParams + ' "' + url + '"';
+        var cmdStr = 'curl -X ' + method + ' -k -s -w %{http_code}' + curlParams + ' "' + url + '"';
         var contentType = me.req.headers.accept.split(',')[0] || 'application/json';
         var encoding = !(/charset/.test(contentType)) ? 'utf-8' : (function () {
             var s = contentType.search(/charset/);
