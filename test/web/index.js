@@ -16,6 +16,11 @@ $(function () {
             $('.content').html(data);
         });
     });
+    // $('.httpsPost').click(function () {
+    //     https.post(function (data) {
+    //         $('.content').html(data);
+    //     });
+    // });
 });
 var http = {
     get: function (cal) {
@@ -44,6 +49,23 @@ var https = {
             beforeSend: function( xhr ) {
                 xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
                 xhr.setRequestHeader('protocol', 'https');
+            }
+        })
+        .done(function(json) {
+            cab && cab(json);
+        })
+        .fail(function() {
+            
+        });
+    },
+    post: function () {
+        $.ajax({
+            url: '/collect',
+            type: 'POST',
+            beforeSend: function( xhr ) {
+                xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+                xhr.setRequestHeader('protocol', 'https');
+                xhr.setRequestHeader('method', 'POST');
             }
         })
         .done(function(json) {
