@@ -53,7 +53,7 @@ module.exports = {
      * @param  {Objetc} headers 形参
      *
      */
-    lodashHeaders: function (headers) {
+    lodashHeaders: function (me, headers) {
         me.req.headers = _.assign(me.req.headers, headers);
     }
 };

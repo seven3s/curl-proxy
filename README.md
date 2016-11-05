@@ -21,7 +21,7 @@
 	```
 	var curlProxy = require('curl-proxy');
 	// 如果node webserver没有设置必须先设置
-	curlProxy.lodashHeaders({
+	curlProxy.lodashHeaders(this, {
         host: '10.95.105.135:8030',
         protocol: 'http' // 默认http，可不用设置
     });
